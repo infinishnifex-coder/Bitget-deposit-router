@@ -51,7 +51,7 @@ export function useTokenBalances() {
 
         const held: WalletToken[] = [];
         results.forEach((res, i) => {
-          if (res.status === "success" && (res.result as bigint) > 0n) {
+          if (res.status === "success" && (res.result as unknown as bigint) > 0n) {
             const t = batch[i];
             held.push({
               address: t.address,
@@ -59,7 +59,7 @@ export function useTokenBalances() {
               name: t.name,
               decimals: t.decimals,
               logoURI: t.logoURI,
-              balance: res.result as bigint,
+              balance: res.result as unknown as bigint,
             });
           }
         });
